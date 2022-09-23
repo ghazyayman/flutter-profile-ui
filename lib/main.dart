@@ -1,6 +1,7 @@
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_profile_app/about_me.dart';
 
 void main() => runApp(ProfileApp());
 
@@ -43,28 +44,67 @@ class _ProfileAppState extends State<ProfileApp> {
                   fontWeight: FontWeight.bold),
             ),
             SizedBox(
-              height: 20.0,
+              height: 50.0,
               width: 150.0,
               child: Divider(
                 color: Colors.blueAccent.shade100,
               ),
-            )
+            ),
             Card(
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.phone,
-                    color: Colors.blueAccent,
-                  ),
-                  title: Text('+62 812 3456 7890',
-                      style: TextStyle(
-                          color: Colors.blueAccent.shade700,
-                          fontFamily: 'Source Sans Pro',
-                          fontSize: 20.0)),
-                ))
+              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+              child: ListTile(
+                leading: Icon(
+                  Icons.account_box_rounded,
+                  color: Colors.blueAccent,
+                ),
+                title: Text('D121171307',
+                    style: TextStyle(
+                        color: Colors.blueAccent.shade700,
+                        fontFamily: 'Source Sans Pro',
+                        fontSize: 20.0)),
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.symmetric(
+                vertical: 10.0,
+                horizontal: 25.0,
+              ),
+              child: ListTile(
+                leading: Icon(
+                  Icons.email,
+                  color: Colors.blueAccent,
+                ),
+                title: Text(
+                  'muhghazyayman@gmail.com',
+                  style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.blueAccent.shade700,
+                      fontFamily: 'Source Sans Pro'),
+                ),
+              ),
+            ),
+            NavigateButton(name: "About Me", page: AboutMe())
           ],
         ),
       ),
     ));
+  }
+}
+
+class NavigateButton extends StatelessWidget {
+  const NavigateButton({Key? key, required this.name, required this.page})
+      : super(key: key);
+
+  final Widget page;
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      child: Text(name),
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (ctx) => page));
+      },
+    );
   }
 }
